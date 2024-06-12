@@ -1,0 +1,13 @@
+
+file_format: "1"
+id: pw_semiflex
+name: pw_semiflex
+type: shield
+url: https://github.com/peterwhitesell/pw-semiflex-zmk-shield/
+requires:
+- pro_micronice_nano_v2
+features:
+- keys
+siblings:
+- pw_semiflex_left
+- pw_semiflex_right
