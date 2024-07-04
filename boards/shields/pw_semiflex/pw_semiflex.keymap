@@ -34,33 +34,33 @@
 &kp LCTL     &kp Z        &kp X        &kp C        &kp V        &kp B                        &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp RSHFT
                           &kp RCLK     &kp LCLK                                                                         &kp LCLK     &kp RCLK
                                 &mo SYMBOL   &kp LGUI     &mo ACTION                     &mo SYMBOL   &kp RGUI     &mo ACTION
-                                &kp trans    &kp trans    &kp trans                      &kp trans    &kp trans    &kp trans
+                                &trans       &trans       &trans                         &trans       &trans       &trans   
             >;
         };
 
         symbol_layer {
             display-name = "SYMBOL";
             bindings = <
-                          &kp trans    &kp trans                                                                        &kp trans    &kp trans
-&kp trans    &kp trans    &kp N7       &kp N8       &kp N9       &kp trans                    &kp trans    &kp trans    &kp UP       &kp trans    &kp trans    &kp GRAVE
-&kp trans    &kp trans    &kp N4       &kp N5       &kp N6       &kp LPAR                     &kp RPAR     &kp LEFT     &kp DOWN     &kp trans    &kp RIGHT    &kp trans
-&kp trans    &kp N0       &kp N1       &kp N2       &kp N3       &kp LBKT                     &kp RBKT     &kp MINUS    &kp EQUAL    &kp UNDER    &kp PIPE     &kp trans
-                          &kp trans    &kp trans                                                                        &kp trans    &kp trans
-                                &kp trans    &kp trans    &kp trans                      &kp trans    &kp trans    &kp trans
-                                &kp trans    &kp trans    &kp trans                      &kp trans    &kp trans    &kp trans
+                          &trans       &trans                                                                           &trans       &trans   
+&trans       &trans       &kp N7       &kp N8       &kp N9       &trans                       &trans       &trans       &kp UP       &trans       &trans       &kp GRAVE
+&trans       &trans       &kp N4       &kp N5       &kp N6       &kp LPAR                     &kp RPAR     &kp LEFT     &kp DOWN     &trans       &kp RIGHT    &trans   
+&trans       &kp N0       &kp N1       &kp N2       &kp N3       &kp LBKT                     &kp RBKT     &kp MINUS    &kp EQUAL    &kp UNDER    &kp PIPE     &trans   
+                          &trans       &trans                                                                           &trans       &trans   
+                                &trans       &trans       &trans                         &trans       &trans       &trans   
+                                &trans       &trans       &trans                         &trans       &trans       &trans   
             >;
         };
 
         action_layer {
             display-name = "ACTION";
             bindings = <
-                          &kp trans    &kp trans                                                                        &kp trans    &kp trans
-&kp trans    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans                    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans
-&kp trans    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans                    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans
-&kp trans    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans                    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans    &kp trans
-                          &kp trans    &kp trans                                                                        &kp trans    &kp trans
-                                &kp trans    &kp trans    &kp trans                      &kp trans    &kp trans    &kp trans
-                                &kp trans    &kp trans    &kp trans                      &kp trans    &kp trans    &kp trans
+                          &trans       &trans                                                                           &trans       &trans   
+&trans       &trans       &trans       &trans       &trans       &trans                       &trans       &trans       &trans       &trans       &trans       &trans   
+&trans       &trans       &trans       &trans       &trans       &trans                       &trans       &trans       &trans       &trans       &trans       &trans   
+&trans       &trans       &trans       &trans       &trans       &trans                       &trans       &trans       &trans       &trans       &trans       &trans   
+                          &trans       &trans                                                                           &trans       &trans   
+                                &trans       &trans       &trans                         &trans       &trans       &trans   
+                                &trans       &trans       &trans                         &trans       &trans       &trans   
             >;
         };
     };
