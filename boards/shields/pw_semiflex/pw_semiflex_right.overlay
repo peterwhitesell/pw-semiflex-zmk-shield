@@ -40,10 +40,9 @@
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
 
-    tball_r: pd@0 {
+    pd0: pd@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
-		label = "TBALL_R";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
@@ -59,23 +58,12 @@
 };
 
 / {
-	/* THIS make keymap binding happy only, nothing happen on peripheral side */
-	tball_l: virtual_input_tb_l {
-		compatible = "zmk,virtual-input";
-	};
-
-	/* for peripheral side, define (input-device)-to-(relay-channel) mapping */
-	input_relay_config_102 {
-		compatible = "zmk,split-peripheral-input-relay";
-
-		/* peripheral side input device, used to... */
-		/*  - be intecepted on peripheral; */
-		/*  - and then, be resurrected as `zmk,virtual-device` on central; */
-		device = <&tball_r>;
-		
-		/* channel id, used to be be transfered along with all input events. */
-		/* NOTE 1: pick any 8bit integer. (1 - 255) */
-		/* NOTE 2: should matching relay-channel on central overlay */
-		relay-channel = <102>;
-	};
+    pd1: virtual_input_tb_l {
+        compatible = "zmk,virtual-input";
+    };
+    input_relay_config_102 {
+        compatible = "zmk,split-peripheral-input-relay";
+        device = <&pd0>;
+        relay-channel = <102>;
+    };
 };
