@@ -27,7 +27,7 @@
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
 
-    pd0: pd0@0 {
+    tball_r: pd@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
@@ -46,7 +46,7 @@
 
 / {
 	/* THIS make keymap binding happy only, nothing happen on peripheral side */
-	pd1: virtual_input {
+	tball_l: virtual_input_tb_l {
 		compatible = "zmk,virtual-input";
 	};
 
@@ -57,7 +57,7 @@
 		/* peripheral side input device, used to... */
 		/*  - be intecepted on peripheral; */
 		/*  - and then, be resurrected as `zmk,virtual-device` on central; */
-		device = <&pd0>;
+		device = <&tball_r>;
 		
 		/* channel id, used to be be transfered along with all input events. */
 		/* NOTE 1: pick any 8bit integer. (1 - 255) */

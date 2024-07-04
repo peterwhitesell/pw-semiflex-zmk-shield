@@ -66,13 +66,13 @@
     };
 
     /* assign `input-listener` to all pointing devices */
-    /* &pd0 on central, &pd1 on peripheral */
+    /* &tball_l on central, &tball_r on peripheral */
     trackball_central_listener {
         compatible = "zmk,input-listener";
-        device = <&pd0>;
+        device = <&tball_r>;
     };
     trackball_peripheral_listener {
         compatible = "zmk,input-listener";
-        device = <&pd1>;
+        device = <&tball_l>;
     };
 };
