@@ -1,5 +1,7 @@
 #include "pw_semiflex.dtsi"
 
+// Left is main
+
 &kscan0 {
     col-gpios
         = <&gpio0 9 GPIO_ACTIVE_HIGH> // Column 1
@@ -13,24 +15,26 @@
         ;
 };
 
-&pinctrl {
-    spi0_default: spi0_default {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 20)>,
-                <NRF_PSEL(SPIM_MISO, 0, 20)>;
-        };
-    };
+{
+	/* define virtual input, will be resurrected for emitting input event */
+	/* NOTE: set `device = <&pd1>` in `zmk,input-listener` */
+	pd1: virtual_input {
+		compatible = "zmk,virtual-input";
+	};
 
-    spi0_sleep: spi0_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 20)>,
-                <NRF_PSEL(SPIM_MISO, 0, 20)>;
-            low-power-enable;
-        };
-    };
+	/* for central side, define (relay-channel)-to-(virtual-input) mapping */
+	input_relay_config_102 {
+		compatible = "zmk,split-peripheral-input-relay";
+		
+		/* channel id, used to filter incoming input event from split peripheral */
+		/* NOTE: should matching relay-channel on peripheral overlay */
+		relay-channel = <102>;
+
+		/* virtual input device on central, which used to emit input event as an agent device */
+		device = <&pd1>;
+	};
 };
+
 
 &spi0 {
     status = "okay";
@@ -40,7 +44,7 @@
     pinctrl-names = "default", "sleep";
     cs-gpios = <&gpio0 24 GPIO_ACTIVE_LOW>;
 
-    trackball: trackball@0 {
+    pd0: pd0@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
@@ -49,14 +53,7 @@
 
         /*   optional features   */
         // snipe-layers = <1>;
-        // scroll-layers = <2 3>;
+        scroll-layers = <1>;
         // automouse-layer = <4>;
     };
-};
-
-/ {
-  trackball_listener {
-    compatible = "zmk,input-listener";
-    device = <&trackball>;
-  };
 };

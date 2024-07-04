@@ -9,5 +9,5 @@ requires:
 features:
 - keys
 siblings:
-- pw_semiflex_left
-- pw_semiflex_right
+- pw_semiflex_left  # main
+- pw_semiflex_right # peripheral
