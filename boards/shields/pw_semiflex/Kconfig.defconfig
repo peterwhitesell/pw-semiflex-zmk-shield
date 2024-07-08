@@ -1,4 +1,4 @@
-if SHIELD_PW_SEMIFLEX_LEFT
+if SHIELD_PW_SEMIFLEX_RIGHT
 
 config ZMK_KEYBOARD_NAME
     default "PW Semiflex"

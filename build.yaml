@@ -1,5 +1,5 @@
 include:
 - board: nice_nano_v2
-  shield: pw_semiflex_left  # main
+  shield: pw_semiflex_left  # peripheral
 - board: nice_nano_v2
-  shield: pw_semiflex_right # peripheral
+  shield: pw_semiflex_right # central
