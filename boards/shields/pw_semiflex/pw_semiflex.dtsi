@@ -24,8 +24,9 @@ RC(2,0) RC(2,1) RC(4,2) RC(4,3) RC(2,4) RC(2,5)                 RC(2,15) RC(2,14
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
-        debounce-press-ms = <10>;   // Adjust as needed
-        debounce-release-ms = <5>;  // Adjust as needed
+        debounce-press-ms = <20>;   // Adjust as needed
+        debounce-release-ms = <10>;  // Adjust as needed
+        poll-period-ms = <20>; // Increased from default of 10
         // wakeup-source;
 
         row-gpios
