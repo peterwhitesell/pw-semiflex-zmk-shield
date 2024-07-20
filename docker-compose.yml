@@ -1,0 +1,9 @@
+services:
+  zmk:
+    build:
+      context: ../zmk/.devcontainer
+    volumes:
+      - .:/workspaces/zmk-config
+      - ../zmk:/workspaces/zmk
+      - ./scripts/build:/usr/local/bin/build-zmk
+    working_dir: /workspaces/zmk
