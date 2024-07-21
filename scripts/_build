@@ -1,0 +1,22 @@
+#!/bin/bash
+
+function build() {
+  cd /workspaces/zmk/app
+  pwd
+  side=$1
+  west build \
+    -d build/${side} \
+    -b nice_nano_v2 -- \
+      -DSHIELD=pw_semiflex_${side} \
+      -DZMK_CONFIG="/workspaces/zmk-config/config" \
+      -DZMK_EXTRA_MODULES="/workspaces/zmk-config" \
+  && cp build/${side}/zephyr/zmk.uf2 /workspaces/zmk-config/${side}.uf2 \
+  && echo "----Finished building ${side}.uf2-----"
+}
+
+if [ "$1" == "" ]; then
+  build right
+  build left
+else
+  build $1
+fi
