@@ -5,7 +5,7 @@ ZMK config for `pw-semiflex` shield.
 ### GitHub Action
 The default zmk user-config GitHub actions will build firmware for both right and left sides. 
 
-### Local build in Docker
+### Local in Docker
 Build this configuration of zmk firmware locally in docker with `docker-compose run --rm -it zmk [right|left]`. If you don't pass `left` or `right`, both will be built. The resulting firmware is saved at `./<side>.uf2`, which are gitignored.
 
 During the first build on your local system, the docker build takes several minutes, mostly due to `west update` installing the zephyr project dependencies. Subsequent builds should be must faster, for me `~25s`/side.
