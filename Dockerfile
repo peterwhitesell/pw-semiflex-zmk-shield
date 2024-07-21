@@ -16,4 +16,6 @@ RUN cd zmk && west init -l app/ --mf /workspaces/zmk-config/config/west.yml && w
 
 WORKDIR /root/zmk/app
 
-CMD ["/bin/bash"]
+COPY ./scripts/_build /usr/local/bin/build
+
+ENTRYPOINT ["build"]

@@ -1,0 +1,9 @@
+scripts/build
+.github
+tmp
+.gitignore
+.tool-versions
+*.uf2
+README.md
+Dockerfile
+docker-compose.yaml

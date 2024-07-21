@@ -4,5 +4,3 @@ services:
       context: .
     volumes:
       - .:/workspaces/zmk-config
-      - ./scripts/_build:/usr/local/bin/build
-    entrypoint: build
