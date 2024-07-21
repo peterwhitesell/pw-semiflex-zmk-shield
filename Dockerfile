@@ -10,7 +10,7 @@ WORKDIR /root
 
 COPY --from=yq /usr/bin/yq /usr/bin/yq
 
-RUN git clone -b $(yq e '.manifest.projects[] | select(.remote == "zmkfirmware").revision' /workspaces/zmk-config/config/west.yml) $(yq e '.manifest.remotes[] | select(.name == "zmkfirmware").url-base' /workspaces/zmk-config/config/west.yml)/zmk
+RUN git clone -b $(yq e '.manifest.projects[] | select(.name == "zmk").revision' /workspaces/zmk-config/config/west.yml) $(yq e '.manifest.remotes as $rs | .manifest.projects as $ps | ($ps[] | select(.name == "zmk")) as $p | $rs[] | select(.name == $p.remote).url-base' /workspaces/zmk-config/config/west.yml)/zmk
 
 RUN cd zmk && west init -l app/ --mf /workspaces/zmk-config/config/west.yml && west update -n
 
