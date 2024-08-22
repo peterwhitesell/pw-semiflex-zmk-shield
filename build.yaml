@@ -3,3 +3,5 @@ include:
   shield: pw_semiflex_left  # peripheral
 - board: nice_nano_v2
   shield: pw_semiflex_right # central
+- board: nice_nano_v2
+  shield: settings_reset

@@ -8,6 +8,8 @@
 #define SYMBOL 1
 #define ACTION 2
 #define KEYBOARD 3
+#define SYMBOL_OLD 4
+#define ACTION_OLD 5
 
 &caps_word {
     continue-list = <UNDERSCORE MINUS>;
@@ -121,6 +123,15 @@
                 , <&macro_release &kp LGUI>
                 ;
         };
+        cmdclk: cmdclk {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &mkp LCLK>
+                , <&macro_release &kp LGUI>
+                ;
+        };
     };
 
     keymap {
@@ -130,26 +141,27 @@
             display-name = "QWERTY";
             bindings = <
                            &kp BSPC     &kp DEL                                                                          &kp BSPC     &kp DEL
-&kp TAB       &kp Q        &kp W        &kp E        &kp R        &kp T                        &kp Y        &kp U        &kp I        &kp O        &kp P        &kp SQT
+&bt BT_CLR_ALL       &kp Q        &kp W        &kp E        &kp R        &kp T                        &kp Y        &kp U        &kp I        &kp O        &kp P        &kp SQT
 &td_lshft     &kp A        &kp S        &kp D        &kp F        &kp G                        &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp RET
 &kp LCTRL     &kp Z        &kp X        &kp C        &kp V        &kp B                        &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp RSHFT
                            &mkp RCLK    &mkp LCLK                                                                        &mkp LCLK     &mkp RCLK
-                                                    &kp BSPC     &mo SYMBOL                    &mo SYMBOL
-                                                      &kp LGUI    &kp SPACE                   &kp SPACE
-                                                       &kp LALT    &mo ACTION                &mo ACTION
+                                                    &mo ACTION    &kp BSPC                    &kp RALT
+                                                     &mo SYMBOL    &kp SPACE                 &kp LGUI
+                                                      &kp LALT       &kp LGUI               &bt BT_CLR_ALL
             >;
         };
 
         symbol_layer {
             display-name = "SYMBOL";
             bindings = <
-                           &trans       &trans                                                                           &trans       &trans
-&kp LG(GRAVE) &kp ESC      &kp N7       &kp N8       &kp N9       &trans                       &trans       &trans       &up_sym      &trans       &trans       &kp GRAVE
-&trans        &kp N0       &kp N4       &kp N5       &kp N6       &kp LPAR                     &kp RPAR     &left_sym    &down_sym    &trans       &right_sym   &kp LG(RET)
-&trans        &trans       &kp N1       &kp N2       &kp N3       &kp LBKT                     &kp RBKT     &kp MINUS    &kp EQUAL    &kp UNDER    &kp PIPE     &trans
-                           &trans       &trans                                                                           &trans       &trans
-                                                     &trans       &mo KEYBOARD                 &mo KEYBOARD
-                                                      &trans       &emoji                     &emoji
+                           &none        &none                                                                            &kp PG_UP    &kp LG(LEFT) 
+&kp LG(GRAVE) &kp ESC      &kp N7       &kp N8       &kp N9       &kp LG(RIGHT)                   &kp LG(LEFT)    &kp LA(LEFT) &kp UP       &none        &kp LA(RIGHT) &kp GRAVE
+&trans        &kp N0       &kp N4       &kp N5       &kp N6       &kp LPAR                     &kp RPAR     &kp LEFT     &kp DOWN     &none        &kp RIGHT     &kp LG(RET)
+&trans        &none        &kp N1       &kp N2       &kp N3       &kp LBKT                     &kp RBKT     &kp MINUS    &kp EQUAL    &kp UNDER    &kp BSLH      &trans
+                           &none        &none                                                                            &kp PG_DN  &kp LG(RIGHT)
+                           
+                                                     &mo KEYBOARD &none                        &trans
+                                                      &none        &trans                     &trans
                                                        &trans       &trans                   &trans
             >;
         };
@@ -157,14 +169,14 @@
         action_layer {
             display-name = "ACTION";
             bindings = <
-                          &trans       &trans                                                                           &kp PG_UP    &trans
-&kp LG(TAB)  &trans       &trans       &emoji       &trans       &trans                       &mission     &trans       &kp UP       &trans       &trans       &app_wins
-&trans       &trans       &trans       &trans       &trans       &trans                       &kp LA(LEFT) &kp LEFT     &kp DOWN     &trans       &kp RIGHT    &kp LA(RIGHT)
-&trans       &trans       &trans       &trans       &clipboard   &trans                       &trans       &trans       &kp PG_DN    &trans       &trans       &trans
-                          &trans       &trans                                                                           &screenshot  &screenvid
-                                                    &trans       &trans                         &trans
-                                                      &trans       &trans                     &trans
-                                                       &trans       &trans                   &trans
+                          &none        &none                                                                            &kp PG_UP    &kp LG(UP) 
+&kp LG(TAB)  &kp ESC      &kp LG(W)    &emoji       &kp LG(R)    &kp LG(T)                    &mission     &kp LG(L)    &kp UP       &kp LG(O)     &kp LG(P)        &app_wins
+&trans       &kp LG(A)    &kp LG(S)    &kp LG(D)    &kp LG(F)    &none                        &kp LA(LEFT) &kp LEFT     &kp LG(K)    &kp LG(L)     &kp RIGHT    &kp LA(RIGHT)
+&trans       &kp LG(Z)    &kp LG(X)    &kp LG(C)    &kp LG(V)    &kp LG(B)                    &kp LG(N)    &screenshot  &kp DOWN     &screenvid    &kp LG(FSLH) &trans
+                          &none        &cmdclk                                                                          &kp PG_DN    &kp LG(DOWN)
+                                                    &none         &kp DEL                        &trans 
+                                                     &mo KEYBOARD  &trans                       &trans 
+                                                      &trans        &trans                    &trans
             >;
         };
 
@@ -172,13 +184,13 @@
             display-name = "KEYBOARD";
             bindings = <
                            &bootloader   &sys_reset                                                                      &sys_reset    &bootloader
-&bt BT_CLR   &trans        &trans        &trans        &trans        &trans                   &trans       &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4             &trans       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans       &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4            &trans       &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4
-                          &trans       &trans                                                                           &trans       &trans
-                                                    &trans       &trans                         &trans
-                                                      &trans       &trans                     &trans
-                                                       &trans       &trans                   &trans
+&bt BT_CLR   &none         &none         &none         &none         &none                    &none        &none         &none         &none         &none         &bt BT_CLR
+&none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4             &none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&none        &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4            &none        &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4
+                          &none        &none                                                                            &none        &none 
+                                                    &none        &none                          &none 
+                                                      &none        &none                      &none 
+                                                       &none        &none                    &none 
             >;
         };
     };
