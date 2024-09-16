@@ -1,7 +1,7 @@
 if SHIELD_PW_SEMIFLEX_RIGHT
 
 config ZMK_KEYBOARD_NAME
-    default "PW Semiflex"
+    default "PW TPAD"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y

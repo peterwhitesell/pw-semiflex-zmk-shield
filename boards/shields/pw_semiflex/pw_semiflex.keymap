@@ -16,6 +16,52 @@
 };
 
 / {
+    tpad0_mmv_ibl {
+        compatible = "zmk,input-behavior-listener";
+        device = <&tpad0>;
+        layers = <QWERTY>;
+        y-invert;
+        /* NOTE: do NOT override event code here, */
+        /*       let Cirque glidepoint reports click from taps */
+        // evt-type = <INPUT_EV_REL>;
+        // x-input-code = <INPUT_REL_X>;
+        // y-input-code = <INPUT_REL_Y>;
+        // bindings = <&ib_x_scaler 2 1>, <&ib_y_scaler 2 1>;
+    };
+    tpad0_msl_ibl {
+        compatible = "zmk,input-behavior-listener";
+        device = <&tpad0>;
+        layers = <SYMBOL ACTION>;
+        /* NOTE: only apply input-code overriding for INPUT_EV_REL */
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_MISC>;
+        y-input-code = <INPUT_REL_WHEEL>;
+        bindings = <&ib_wheel_scaler 1 8>, <&ib_misc_scaler 0 0>;
+    };
+    ib_wheel_scaler: ib_wheel_scaler {
+        compatible = "zmk,input-behavior-scaler";
+        #binding-cells = <2>;
+        evt-type = <INPUT_EV_REL>;
+        input-code = <INPUT_REL_WHEEL>;
+    };
+    ib_misc_scaler: ib_misc_scaler {
+            compatible = "zmk,input-behavior-scaler";
+            #binding-cells = <2>;
+            evt-type = <INPUT_EV_REL>;
+            input-code = <INPUT_REL_MISC>;
+    };
+    ib_x_scaler: ib_x_scaler {
+        compatible = "zmk,input-behavior-scaler";
+        #binding-cells = <2>;
+        evt-type = <INPUT_EV_REL>;
+        input-code = <INPUT_REL_X>;
+    };
+    ib_y_scaler: ib_y_scaler {
+            compatible = "zmk,input-behavior-scaler";
+            #binding-cells = <2>;
+            evt-type = <INPUT_EV_REL>;
+            input-code = <INPUT_REL_Y>;
+    };
     behaviors {
         td_lshft: tap_dance_shift {
             compatible = "zmk,behavior-tap-dance";
