@@ -46,7 +46,7 @@
         status = "disabled";
         label = "TOUCHPAD0";
         reg = <0>;
-        spi-max-frequency = <4000000>;
+        spi-max-frequency = <2000000>;
     };
 };
 &tpad0 {
