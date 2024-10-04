@@ -218,9 +218,9 @@
             display-name = "QWERTY";
             bindings = <
                            &kp BSPC     &kp DEL                                                                          &kp BSPC     &kp DEL
-&kp TAB       &kp Q        &kp W        &kp E        &kp R        &kp T                        &kp Y        &kp U        &kp I        &kp O        &kp P        &kp SQT
-&td_lshft     &kp A        &kp S        &kp D        &kp F        &kp G                        &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp RET
-&kp LCTRL     &kp Z        &kp X        &kp C        &kp V        &kp B                        &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp RSHFT
+&kp TAB       &kp Q        &kp W        &kp E        &kp R        &kp T                        &kp Y        &kp U        &kp I        &kp O        &kp P           &kp SQT
+&td_lshft     &hsh LSHFT A &hml LCTRL S &hml LALT D  &hml LGUI F  &kp G                        &kp H        &hmr RGUI J  &hmr RALT K  &hmr RCTRL L &hsh RSHFT SEMI &kp RET
+&kp LCTRL     &kp Z        &kp X        &kp C        &kp V        &kp B                        &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH        &kp RSHFT
                            &mkp RCLK    &mkp LCLK                                                                        &mkp LCLK     &mkp RCLK
                                                     &mo ACTION    &kp BSPC                    &kp RALT
                                                      &mo SYMBOL    &kp SPACE                 &kp LGUI
@@ -231,12 +231,11 @@
         symbol_layer {
             display-name = "SYMBOL";
             bindings = <
-                           &none        &none                                                                            &kp PG_UP    &kp LG(LEFT) 
-&kp LG(GRAVE) &kp ESC      &kp N7       &kp N8       &kp N9       &kp LG(RIGHT)                   &kp LG(LEFT)    &kp LA(LEFT) &kp UP       &none        &kp LA(RIGHT) &kp GRAVE
-&trans        &kp N0       &kp N4       &kp N5       &kp N6       &kp LPAR                     &kp RPAR     &kp LEFT     &kp DOWN     &none        &kp RIGHT     &kp LG(RET)
-&trans        &none        &kp N1       &kp N2       &kp N3       &kp LBKT                     &kp RBKT     &kp MINUS    &kp EQUAL    &kp UNDER    &kp BSLH      &trans
-                           &none        &none                                                                            &kp PG_DN  &kp LG(RIGHT)
-                           
+                            &none         &none                                                                              &kp PG_UP      &kp LG(LEFT) 
+&kp LG(GRAVE) &kp ESC       &kp N7        &kp N8       &kp N9       &kp LG(RIGHT)                &kp LG(LEFT) &kp LA(LEFT)   &kp UP         &kp LA(RIGHT)    &kp GRAVE      &kp GRAVE
+&trans        &hsh LSHFT N0 &hml LCTRL N4 &hml LALT N5 &hml LGUI N6 &kp LPAR                     &kp RPAR     &hmr RGUI LEFT &hmr RALT DOWN &hmr RCTRL RIGHT &hsh RSHFT SQT &kp LG(RET)
+&trans        &none         &kp N1        &kp N2       &kp N3       &kp LBKT                     &kp RBKT     &kp MINUS      &kp EQUAL      &kp UNDER        &kp BSLH       &trans
+                            &none         &none                                                                              &kp PG_DN      &kp LG(RIGHT)
                                                      &mo KEYBOARD &none                        &trans
                                                       &none        &trans                     &trans
                                                        &trans       &trans                   &trans
