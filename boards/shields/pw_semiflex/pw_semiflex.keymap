@@ -21,18 +21,11 @@
         device = <&tpad0>;
         layers = <QWERTY>;
         y-invert;
-        /* NOTE: do NOT override event code here, */
-        /*       let Cirque glidepoint reports click from taps */
-        // evt-type = <INPUT_EV_REL>;
-        // x-input-code = <INPUT_REL_X>;
-        // y-input-code = <INPUT_REL_Y>;
-        // bindings = <&ib_x_scaler 2 1>, <&ib_y_scaler 2 1>;
     };
     tpad0_msl_ibl {
         compatible = "zmk,input-behavior-listener";
         device = <&tpad0>;
         layers = <SYMBOL ACTION>;
-        /* NOTE: only apply input-code overriding for INPUT_EV_REL */
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_MISC>;
         y-input-code = <INPUT_REL_WHEEL>;
@@ -57,17 +50,17 @@
         input-code = <INPUT_REL_X>;
     };
     ib_y_scaler: ib_y_scaler {
-            compatible = "zmk,input-behavior-scaler";
-            #binding-cells = <2>;
-            evt-type = <INPUT_EV_REL>;
-            input-code = <INPUT_REL_Y>;
+        compatible = "zmk,input-behavior-scaler";
+        #binding-cells = <2>;
+        evt-type = <INPUT_EV_REL>;
+        input-code = <INPUT_REL_Y>;
     };
     behaviors {
         hml: homerow_mod_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
-            flavor = "balanced"; // "tap-unless-interrupted";
+            flavor = "balanced";
             tapping-term-ms = <250>;
             quick-tap-ms = <150>;
             require-prior-idle-ms = <150>;
@@ -86,128 +79,13 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
-            flavor = "balanced"; // "tap-unless-interrupted";
+            flavor = "balanced";
             tapping-term-ms = <250>;
             quick-tap-ms = <250>;
             require-prior-idle-ms = <250>;
             hold-while-undecided;
             hold-trigger-key-positions = <0 1 4 5 6 7 8 9 16 17 18 19 20 21 28 29 30 31 32 33 40 41 42 43 44 45>;
             hold-trigger-on-release;
-        };
-        td_lshft: tap_dance_shift {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LSHFT>, <&caps_word>;
-        };
-    };
-    macros {
-        left_sym: left_sym {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N1 &kp KP_N9 &kp KP_N0>
-                , <&macro_release &kp LALT>
-                ;
-        };
-        up_sym: up_sym {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N1 &kp KP_N9 &kp KP_N1>
-                , <&macro_release &kp LALT>
-                ;
-        };
-        right_sym: right_sym {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N1 &kp KP_N9 &kp KP_N2>
-                , <&macro_release &kp LALT>
-                ;
-        };
-        down_sym: down_sym {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N1 &kp KP_N9 &kp KP_N3>
-                , <&macro_release &kp LALT>
-                ;
-        };
-        mission: mission {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp UP>
-                , <&macro_release &kp LCTRL>
-                ;
-        };
-        app_wins: app_wins {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp DOWN>
-                , <&macro_release &kp LCTRL>
-                ;
-        };
-        screenshot: screenshot {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI>
-                , <&macro_press &kp LSHIFT>
-                , <&macro_tap &kp N4>
-                , <&macro_release &kp LSHIFT>
-                , <&macro_release &kp LGUI>
-                ;
-        };
-        screenvid: screenvid {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI>
-                , <&macro_press &kp LSHIFT>
-                , <&macro_tap &kp N5>
-                , <&macro_release &kp LSHIFT>
-                , <&macro_release &kp LGUI>
-                ;
-        };
-        clipboard: clipboard {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI>
-                , <&macro_press &kp LSHIFT>
-                , <&macro_tap &kp V>
-                , <&macro_release &kp LSHIFT>
-                , <&macro_release &kp LGUI>
-                ;
-        };
-        emoji: emoji {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI>
-                , <&macro_press &kp LCTRL>
-                , <&macro_tap &kp SPACE>
-                , <&macro_release &kp LCTRL>
-                , <&macro_release &kp LGUI>
-                ;
-        };
-        cmdclk: cmdclk {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LGUI>
-                , <&macro_tap &mkp LCLK>
-                , <&macro_release &kp LGUI>
-                ;
         };
     };
 
@@ -216,57 +94,61 @@
 
         qwerty_layer {
             display-name = "QWERTY";
+/*-----------------------QWERTY-----------------------*\
+  Q    W    E    R    T          Y    U    I    O    P
+  A/⇧  S/⌃  D/⌥  F/⌘  G          H    J/⌘  K/⌥  L/⌃  ;
+  Z    X    X    C    V          N    M    ,    .    /
+     rclk  lclk                          lclk  rclk
+                       ⌫        ↹
+                       ␣        ⏎
+                      SYM      SYM
+/*------------------------SYMBOL----------------------*\
+ esc   7    8    9                         ↑         `
+  0    4    5    6    (          )    ←    ↓    →    '
+       1    2    3    [          ]    -    =    _    \
+     rclk  lclk                          lclk  rclk
+
+
+                       ⌨️        ⌨️
+/*----------------------KEYBOARD-----------------------*\
+ ❌                                                 ❌
+ 🛜0  🛜1  🛜2  🛜3  🛜4         🛜4  🛜3  🛜2  🛜1  🛜0
+ ❌0  ❌1  ❌2  ❌3  ❌4         ❌4  ❌3  ❌2  ❌1  ❌0
+/*-----------------------------------------------------*/
             bindings = <
-                           &kp BSPC     &kp DEL                                                                          &kp BSPC     &kp DEL
-&kp TAB       &kp Q        &kp W        &kp E        &kp R        &kp T                        &kp Y        &kp U        &kp I        &kp O        &kp P           &kp SQT
-&td_lshft     &hsh LSHFT A &hml LCTRL S &hml LALT D  &hml LGUI F  &kp G                        &kp H        &hmr RGUI J  &hmr RALT K  &hmr RCTRL L &hsh RSHFT SEMI &kp RET
-&kp LCTRL     &kp Z        &kp X        &kp C        &kp V        &kp B                        &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH        &kp RSHFT
-                           &mkp RCLK    &mkp LCLK                                                                        &mkp LCLK     &mkp RCLK
-                                                    &mo ACTION    &kp BSPC                    &kp RALT
-                                                     &mo SYMBOL    &kp SPACE                 &kp LGUI
-                                                      &kp LALT       &kp LGUI               &kp LCTRL
+&kp Q         &kp W         &kp E         &kp R         &kp T                        &kp Y         &kp U          &kp I          &kp O           &kp P
+&hsh LSHFT A  &hml LCTRL S  &hml LALT D   &hml LGUI F   &kp G                        &kp H         &hmr RGUI J    &hmr RALT K    &hmr RCTRL L    &hsh RSHFT SEMI
+&kp Z         &kp X         &kp C         &kp V         &kp B                        &kp N         &kp M          &kp COMMA      &kp DOT         &kp FSLH
+              &mkp RCLK     &mkp LCLK                                                                             &mkp LCLK      &mkp RCLK
+                                                             &kp BSPC           &kp TAB
+                                                             &kp SPACE          &kp RET
+                                                             &mo SYMBOL         &mo SYMBOL
             >;
         };
 
         symbol_layer {
             display-name = "SYMBOL";
             bindings = <
-                            &none         &none                                                                              &kp PG_UP      &kp LG(LEFT) 
-&kp LG(GRAVE) &kp ESC       &kp N7        &kp N8       &kp N9       &kp LG(RIGHT)                &kp LG(LEFT) &kp LA(LEFT)   &kp UP         &kp LA(RIGHT)    &kp GRAVE      &kp GRAVE
-&trans        &hsh LSHFT N0 &hml LCTRL N4 &hml LALT N5 &hml LGUI N6 &kp LPAR                     &kp RPAR     &hmr RGUI LEFT &hmr RALT DOWN &hmr RCTRL RIGHT &hsh RSHFT SQT &kp LG(RET)
-&trans        &none         &kp N1        &kp N2       &kp N3       &kp LBKT                     &kp RBKT     &kp MINUS      &kp EQUAL      &kp UNDER        &kp BSLH       &trans
-                            &none         &none                                                                              &kp PG_DN      &kp LG(RIGHT)
-                                                     &mo KEYBOARD &none                        &trans
-                                                      &none        &trans                     &trans
-                                                       &trans       &trans                   &trans
-            >;
-        };
-
-        action_layer {
-            display-name = "ACTION";
-            bindings = <
-                          &none        &none                                                                            &kp PG_UP    &kp LG(UP) 
-&kp LG(TAB)  &kp ESC      &kp LG(W)    &emoji       &kp LG(R)    &kp LG(T)                    &mission     &kp LG(L)    &kp UP       &kp LG(O)     &kp LG(P)        &app_wins
-&trans       &kp LG(A)    &kp LG(S)    &kp LG(D)    &kp LG(F)    &none                        &kp LA(LEFT) &kp LEFT     &kp LG(K)    &kp LG(L)     &kp RIGHT    &kp LA(RIGHT)
-&trans       &kp LG(Z)    &kp LG(X)    &kp LG(C)    &kp LG(V)    &kp LG(B)                    &kp LG(N)    &screenshot  &kp DOWN     &screenvid    &kp LG(FSLH) &trans
-                          &none        &cmdclk                                                                          &kp PG_DN    &kp LG(DOWN)
-                                                    &none         &kp DEL                        &trans 
-                                                     &mo KEYBOARD  &trans                       &trans 
-                                                      &trans        &trans                    &trans
+&kp ESC       &kp N7        &kp N8        &kp N9        &none                        &none         &none          &kp UP         &none            &kp GRAVE
+&hsh LSHFT N0 &hml LCTRL N4 &hml LALT N5  &hml LGUI N6  &kp LPAR                     &kp RPAR      &kp LEFT       &kp DOWN       &kp RIGHT        &hsh RSHFT SQT
+&none         &kp N1        &kp N2        &kp N3        &kp LBKT                     &kp RBKT      &kp MINUS      &kp EQUAL      &kp UNDER        &kp BSLH
+                            &mkp LCLK     &mkp RCLK                                                               &mkp LCLK      &mkp RCLK
+                                                                 &trans             &trans
+                                                                 &trans             &trans
+                                                                 &mo KEYBOARD       &mo KEYBOARD
             >;
         };
 
         keyboard_layer {
             display-name = "KEYBOARD";
             bindings = <
-                           &bootloader   &sys_reset                                                                      &sys_reset    &bootloader
-&bt BT_CLR   &none         &none         &none         &none         &none                    &none        &none         &none         &none         &none         &bt BT_CLR
-&none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4             &none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&none        &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4            &none        &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4
-                          &none        &none                                                                            &none        &none 
-                                                    &none        &none                          &none 
-                                                      &none        &none                      &none 
-                                                       &none        &none                    &none 
+&bt BT_CLR    &none         &none         &none         &none                        &none         &none          &none          &none            &bt BT_CLR
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                 &bt BT_SEL 4  &bt BT_SEL 3   &bt BT_SEL 2   &bt BT_SEL 1     &bt BT_SEL 0
+&bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4                &bt BT_DISC 4 &bt BT_DISC 3  &bt BT_DISC 2  &bt BT_DISC 1    &bt BT_DISC 0
+              &none         &none                                                                                 &none          &none
+                                                                 &none             &none
+                                                                 &none             &none
+                                                                 &none             &none
             >;
         };
     };

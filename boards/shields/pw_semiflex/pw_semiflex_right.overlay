@@ -1,14 +1,12 @@
 #include "pw_semiflex.dtsi"
 
 &default_transform {
-    col-offset = <8>;
+    col-offset = <6>;
 };
 
 &kscan0 {
     col-gpios
-        = <&gpio1 4 GPIO_ACTIVE_HIGH> // Column 8
-        , <&gpio0 11 GPIO_ACTIVE_HIGH> // Column 7
-        , <&gpio1 0 GPIO_ACTIVE_HIGH> // Column 6
+        = <&gpio1 0 GPIO_ACTIVE_HIGH> // Column 6
         , <&gpio1 1 GPIO_ACTIVE_HIGH> // Column 5
         , <&gpio1 2 GPIO_ACTIVE_HIGH> // Column 4
         , <&gpio1 7 GPIO_ACTIVE_HIGH> // Column 3
@@ -55,10 +53,8 @@
     status = "okay";
     dr-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
     sleep;
-    no-smoothing;
-    sensitivity = "2x";
+    sensitivity = "1x";
     no-taps;
-    // rotate-90;
 };
 
 
